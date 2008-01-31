@@ -1,5 +1,5 @@
 = スターバックスは2フェーズコミットを使わない =
-http://www.eaipatterns.com/ramblings/18_starbucks.html
+（原文） http://www.eaipatterns.com/ramblings/18_starbucks.html
 
 2004年11月19日
 
