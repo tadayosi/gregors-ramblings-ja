@@ -1,4 +1,3 @@
-#labels Featured
 = スターバックスは2フェーズコミットを使わない =
 （原文） http://www.eaipatterns.com/ramblings/18_starbucks.html
 
