@@ -1,4 +1,4 @@
-#labels 翻訳完了,翻訳中
+#labels 翻訳完了
 = スターバックスは2フェーズコミットを使わない =
 （原文） http://www.eaipatterns.com/ramblings/18_starbucks.html
 
