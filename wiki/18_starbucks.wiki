@@ -1,4 +1,4 @@
-#summary スターバックスは2フェーズコミットを使わない http://www.eaipatterns.com/ramblings/18_starbucks.html
+#summary スターバックスは2フェーズコミットを使わない
 #labels 翻訳完了
 
 = スターバックスは2フェーズコミットを使わない =
