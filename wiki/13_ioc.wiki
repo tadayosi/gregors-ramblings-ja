@@ -27,7 +27,7 @@ In either scenario the component itself does not acquire references to other com
 
 == データ vs. オブジェクト (Data vs. Objects) ==
 
-Even though [http://www.eaipatterns.com/PipesAndFilters.html Pipes-and-Filters] architectures exhibit some of the same properties as dependency injection models there is one important difference. Dependency injection schemes are generally used to provide object references to a component. Often these references provide useful services to the component, such as persistence, transactional support etc. In the world of message message data might arrive in the form of an object but the message does not provide any services to the component -- it is simply a holder of data.
+[http://www.eaipatterns.com/PipesAndFilters.html Pipes-and-Filters]アーキテクチャは依存性注入と同じ性質をいくつか示しているものの、1つ重要な違いがある。依存性注入の仕組みは、一般的に、コンポーネントにオブジェクトの参照を提供するために使われる。オブジェクトの参照によって、コンポーネントはたとえば永続化、トランザクションのサポートなどといった、便利なサービスを活用できる。メッセージの世界では、メッセージデータはオブジェクトの形で到来するかもしれないが、メッセージからはコンポーネントは何のサービスも利用できない。メッセージは単なるデータの入れ物でしかないからだ。
 
 == ママ見て、ミドルウェアが無いよ！ (Look Ma, No Middleware!) ==
 
