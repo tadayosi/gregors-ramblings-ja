@@ -31,4 +31,4 @@ In either scenario the component itself does not acquire references to other com
 
 == ママ見て、ミドルウェアが無いよ！ (Look Ma, No Middleware!) ==
 
-One of the nice properties of [http://www.eaipatterns.com/PipesAndFilters.html Pipes-and-Filters] architectures is that they can be realized in many different technologies. For example, an implementation could use third party middleware a la JMS, TIBCO, MQ etc. Or it could all just be implemented inside a single JVM using a custom EventChannel class (our most recent project used this approach -- I'll share more about our experiences soon). In either case, this type of architecture enables dynamic composability, extensibility and great testability of individual components.
+[http://www.eaipatterns.com/PipesAndFilters.html Pipes-and-Filters]アーキテクチャのナイスな性質の1つは、多くの異なる技術の中でこのアーキテクチャを実現できることだ。たとえば、JMSやTIBCO、MQといったサードパーティミドルウェアを使ってこのアーキテクチャを実装することもできる。あるいは、1つのJVMの中に、お手製のEventChannelクラスを使って実装することもできる（私たちの一番最近のプロジェクトでは、このアプローチを採用した――近いうちに、この経験についてもっと情報を共有するつもり）。どちらの場合でも、このタイプのアーキテクチャでは、個々のコンポーネントを動的に組み立てたり、拡張したりすることが可能で、またコンポーネントのテスト容易性も非常に優れている。
