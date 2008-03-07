@@ -23,8 +23,6 @@
 
     * Alternatively, we can pass the required channels to each component. Composition of a pipes-and-filters message flow would then happen by virtue of the composer choosing to pass the same channel to multiple components for publication or subscription. This option allows the composer to reuse the same component with different channels. The main drawback is that it does require an external composer to establish connections between components.
 
-In either scenario the component itself does not acquire references to other component but 'advertises' its needs by subscribing to one or more specific message channels. This property gives us many of the same advantages that drives dependency injection, for example improved testability or the ability to execute a component without having to instantiate all other components.
-
 どちらのシナリオにしても、コンポーネント自身が他のコンポーネントへの参照を取得することはなく、1つ以上の特定のメッセージチャンネルを購読することによって自身の要求を「通知する（advertise）」のだ。この性質により、依存性注入に駆り立てるのと同じメリットの多くを享受できる。たとえば、テスト容易性の改善や、あるコンポーネントだけを残るすべてのコンポーネントをインスタンス化することなく実行できること、といったメリットだ。
 
 == データ vs. オブジェクト (Data vs. Objects) ==
