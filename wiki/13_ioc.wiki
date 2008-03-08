@@ -21,7 +21,7 @@
 
  * コンポーネントが自分で1つ以上のチャンネルを選んで、購読・発信を行う。チャンネルは送信者、受信者から分離されているので、この状態でもテスト用データソースからチャンネルにテストデータを流し込むことが可能である。独立したコンポーネント群が1つの大きなシステムとしてまとめ上げられるのは、2つのコンポーネントが同じチャンネルを通して発信または購読することによってである。この構成はは非常に柔軟性が高いが、どのコンポーネントがどのコンポーネントと通信しているのか理解するのが困難になることもある。
 
-    * Alternatively, we can pass the required channels to each component. Composition of a pipes-and-filters message flow would then happen by virtue of the composer choosing to pass the same channel to multiple components for publication or subscription. This option allows the composer to reuse the same component with different channels. The main drawback is that it does require an external composer to establish connections between components.
+ * もう1つは、各コンポーネントに要求されるチャンネルを渡してやる、というものだ。パイプ＆フィルタ型メッセージフローの合成は、合成者（composer）がチャンネルを選んでそれを複数のコンポーネントに渡し、その同一チャンネルを通して発信・購読を行わせることで、実現される。この選択肢では、合成者が異なるチャンネルに対して同じコンポーネントを使い回すことができる。主な欠点は、コンポーネント間の通信を確立するのに、外部の合成者が必要になることだ。
 
 どちらのシナリオにしても、コンポーネント自身が他のコンポーネントへの参照を取得することはなく、1つ以上の特定のメッセージチャンネルを購読することによって自身の要求を「通知する（advertise）」のだ。この性質により、依存性注入に駆り立てるのと同じメリットの多くを享受できる。たとえば、テスト容易性の改善や、あるコンポーネントだけを残るすべてのコンポーネントをインスタンス化することなく実行できること、といったメリットだ。
 
