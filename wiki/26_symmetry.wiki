@@ -1,4 +1,6 @@
+#summary "同期的な非対称 とか 非同期的な対称" とかって言える？
 #labels 未翻訳
-同期的な非対称 とか 非同期的な対称 とかって言える？
+ 
+= "同期的な非対称 とか 非同期的な対称" とかって言える？
 
 (原文)http://www.eaipatterns.com/ramblings/26_symmetry.html
