@@ -1,1 +1,4 @@
 #labels 未翻訳
+Can You Say "Synchronous Asymmetry or Asynchronous Symmetry"?
+
+(原文)http://www.eaipatterns.com/ramblings/26_symmetry.html
