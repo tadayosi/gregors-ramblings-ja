@@ -18,27 +18,27 @@ In order to find an appropriate name for a channel we need to first determine wh
 
 Let's look at a few obvious choices:
 
-[http://www.eaipatterns.com/img/channelnames.png]
-
     * A very simple approach assigns each component its own channel. For example, a component that deals with credit card validations could be called the CreditService and react to messages sent on a channel also named CreditService. If any component needs something related to credit it would send a message to that channel. This simple approach does give us a level of indirection at the implementation level -- we could replace one credit service implementation with another without anyone noticing since the channel name would not change. The semantics of the interaction, however, are not much decoupled. The caller still has to know which component provides the functionality it requires, much like it does in a direct one-to-one interaction between components.
 
     * To reduce the dependency on a specific service we could name the channel analogous to a method name, i.e. according to the operation that is to be performed. For example, if the service provided an operation that can verify a credit card supplied by a customer we might simply name the channel VerifyCreditCard. It is important to keep in mind that these channel operations are not tied to a specific class as is the case in object-oriented approaches. As a result, the caller no longer has to know which component is able to service this type of request, increasing the level of abstraction somewhat. Service-oriented computing generally follows this approach with the only caveat that the operation is typically tied to a specific service (interface).
 
     * Despite the introduction of the channel the semantics of the interaction between the two components still smells a little like a call stack-based system: One component sends a specific request (“check this credit card”) and expects a response (“card good” or “card bad”). But don't despair, we have not yet exhausted the creative possibilities of the channel semantics. Both examples above assume that the requesting component knows that a credit card has to be verified. Could we lift this burden from the “caller” altogether so that the components are truly decoupled? We can take the decoupling one step further by changing the channel name (and the associated semantics) to OrderReceived. This simple change in name signifies a fairly significant shift in responsibility. The message on the channel no longer represents an instruction but rather an event, a notification that something happened. How a receiver responds to this event is completely hidden to the sender. We also no longer assume that there is a single recipient for the event -- the event might be processed by more than one subscriber. For example, a new order not only has to go through credit checking but inventory might also have to be verified. Again, the assumptions between the communicating parties have been reduced. As a result, EDA is often considered to be more loosely coupled than SOA.
 
+[http://www.eaipatterns.com/img/channelnames.png]
+
 == 責務の遷移 (Shifting Responsibilities) ==
 
 Communicating through events as opposed to commands indicates a subtle but important shift of responsibility. It allows components to be decoupled to the extent that the “caller” is no longer aware of what function is executed next nor which component is executing it. Another equally important shift of responsibility between caller and callee is that of keeping state.
 
-[http://www.eaipatterns.com/img/statetransfer1.png]
-
 In a system that is based on queries and commands state is usually kept in one application that is considered the “master” for the data. When another application needs to reference that data it sends a query to the owning application and waits for the response before it continues processing. For example, when an order management system needs to fulfill an order it queries the customer management systems for the customer’s address so it can instruct the shipping application to send the shipment to that address.
+
+[http://www.eaipatterns.com/img/statetransfer1.png]
 
 Event-driven systems work differently, almost to the inverse. Systems do not query other systems for information but instead keep their own copy of the required data and listen to updates as they occur. In our example this would mean that the shipping system keeps its own copy of the customer’s address so when an order arrives it can use that address to label the shipment without having to query the customer management system. While replicating data this way might seem dangerous it also has advantages. The customer management system simply broadcasts changes to the data without having to know who all keeps a copy. Because the customer management is never queried for address data it never becomes a bottleneck even as the system grows and the demands for address data multiply.
 
-[http://www.eaipatterns.com/img/statetransfer2.png]
-
 The principle behind the shift in responsibility is once again tied to the concept of coupling. In a loosely coupled interaction a source of data should not be required to keep state at the convenience of its communication partners. By shifting the burden of keeping state to the consumer the component is can be completely oblivious to the needs of the data consumers – the key ingredient into loose coupling. The shift away from the query-response pattern of interaction means that many components have to act as event Aggregators: they listen to events from multiple sources, keep the relevant state and combine information from multiple events into new events. For example, the shipping system effectively combines address change events and order events into request for shipment to a specific address.
+
+[http://www.eaipatterns.com/img/statetransfer2.png]
 
 == 問題点 (The Catch) ==
 
