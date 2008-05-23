@@ -1,0 +1,11 @@
+#summary 名前がどうした
+#labels 未翻訳
+
+= 名前がどうした =
+（原文） http://www.eaipatterns.com/ramblings/39_namingchannels.html
+
+2006年3月5日
+
+== A New Element ==
+
+Messaging-based interaction introduces two new elements, a channel and a message. Despite their simplicity these new elements open up options and force new decisions. A deceivingly simple question is “how should the channel be named?” When one method called another directly there was no intermediate element and therefore no decision to make. Now that we afforded ourselves the new level of indirection we have to name it appropriately. Choices, choices...
