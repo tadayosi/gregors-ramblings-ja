@@ -16,7 +16,11 @@
 
 In order to find an appropriate name for a channel we need to first determine what the channel should represent. Even though a channel can be a purely logical construct, it is the key mechanism that couples sender and receiver. Both sender and receiver of messages have to agree on a common channel name in order to exchange messages.
 
+チャンネルに適切な名前を見つけるには、まずそのチャンネルが何を表現するものなのかを決める必要がある。チャンネルは単なる論理的な構成物といえるようなものにも関わらず、送信者と受信者とを結びつける重要なメカニズムである。メッセージの交換を行なうためには、メッセージの送信者と受信者の両方が、共通のチャンネル名について合意しなければならない。
+
 Let's look at a few obvious choices:
+
+すぐに思い浮かぶ選択肢のいくつかを見てみよう：
 
     * A very simple approach assigns each component its own channel. For example, a component that deals with credit card validations could be called the CreditService and react to messages sent on a channel also named CreditService. If any component needs something related to credit it would send a message to that channel. This simple approach does give us a level of indirection at the implementation level -- we could replace one credit service implementation with another without anyone noticing since the channel name would not change. The semantics of the interaction, however, are not much decoupled. The caller still has to know which component provides the functionality it requires, much like it does in a direct one-to-one interaction between components.
 
