@@ -1,8 +1,10 @@
-#summary 名前がどうした
+#summary 名前がいったい何だというの？
 #labels 翻訳中
 
-= 名前がどうした =
+= 名前がいったい何だというの？ =
 （原文） http://www.eaipatterns.com/ramblings/39_namingchannels.html
+
+_訳注1: 「名前がいったい何だというの？（What's in a name?）」はシェイクスピア『ロミオとジュリエット』の有名な台詞。_
 
 2006年3月5日
 
