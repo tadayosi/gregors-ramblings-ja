@@ -20,17 +20,17 @@ _訳注1: 「名前がいったい何だというの？（What's in a name?）�
 
 すぐに思い浮かぶ選択肢を、いくつか見てみよう。
 
- * 非常に単純なアプローチは、コンポーネント毎にチャンネルを割り当てるというものだ。たとえば、クレジットカードの検証を行なうコンポーネントを `CreditService` と呼ぶことにし、同じく `CreditService` と名付けられたチャンネルに送信されたメッセージに対して応答するものとする。クレジットに関係する何かが必要なコンポーネントは、みなこのチャンネルにメッセージを送信することになる。この単純なアプローチでも、実装レベルではある一定の間接性が実現される。チャンネル名さえ変えなければ、誰にも気付かれずにクレジットサービスの実装を別のものに置き換えることが可能だからだ。しかし、その相互作用の意味論的機構は、それほど疎結合になっていない。呼び出す側は、未だにどのコンポーネントが求める機能を提供しているかを知っていなくてはならないからだ。これでは、コンポーネント同士が直接、一対一の相互作用をする場合とほとんど同じである。
+ * 非常に単純なアプローチは、コンポーネント毎にチャンネルを割り当てるというものだ。たとえば、クレジットカードの検証を行なうコンポーネントを `CreditService` と呼ぶことにし、同じく `CreditService` と名付けられたチャンネルに送信されたメッセージに対して応答するものとする。クレジットに関係する何かが必要なコンポーネントは、みなこのチャンネルにメッセージを送信することになる。この単純なアプローチでも、実装レベルではある一定の間接性が実現される。チャンネル名さえ変えなければ、誰にも気付かれずにクレジットサービスの実装を別のものに置き換えることが可能だからだ。しかし、その相互作用の意味論は、それほど分離され（decoupled）てはいない。呼び出す側は、未だにどのコンポーネントが求める機能を提供しているかを知っていなくてはならないからだ。これでは、コンポーネント同士が直接、一対一の相互作用をする場合とほとんど同じである。
 
  * 特定のサービスへの依存性を減らすために、メソッド名にちなんだ名前をチャンネルに付けることもできる。メソッド名とは、すなわちそこで実現される操作のことだ。たとえば、サービスが顧客から提示されたクレジットカードを検証する操作を提供するならば、チャンネルには `VerifyCreditCard` という名前を付けるのだ。忘れてはならない重要なことは、これらのチャンネル操作は、オブジェクト指向アプローチの場合のようには特定のクラスに結びつけられていない、ということだ。その結果、どのコンポーネントがこのタイプの要求にサービスを提供できるかということを、呼び出し側はもはや知る必要がなくなり、抽象化のレベルがいくぶん増すことになる。サービス指向の計算処理は、一般にこのアプローチに従う。ただし、操作はたいてい特定のサービス（インタフェース）に結びつけられているのだが。
 
  * Despite the introduction of the channel the semantics of the interaction between the two components still smells a little like a call stack-based system: One component sends a specific request (“check this credit card”) and expects a response (“card good” or “card bad”). But don't despair, we have not yet exhausted the creative possibilities of the channel semantics. Both examples above assume that the requesting component knows that a credit card has to be verified. Could we lift this burden from the “caller” altogether so that the components are truly decoupled? We can take the decoupling one step further by changing the channel name (and the associated semantics) to OrderReceived. This simple change in name signifies a fairly significant shift in responsibility. The message on the channel no longer represents an instruction but rather an event, a notification that something happened. How a receiver responds to this event is completely hidden to the sender. We also no longer assume that there is a single recipient for the event -- the event might be processed by more than one subscriber. For example, a new order not only has to go through credit checking but inventory might also have to be verified. Again, the assumptions between the communicating parties have been reduced. As a result, EDA is often considered to be more loosely coupled than SOA.
 
- * チャンネルを導入したにも関わらず、これではまだ2つのコンポーネント間の相互作用の意味論的機構は、呼び出しスタック・ベースのシステムと同じ臭いがする。あるコンポーネントが特定の要求（「このクレジットカードを確認せよ」）を送信し、応答（「良いカード」または「悪いカード」）を期待する、というものだからだ。
+ * せっかくチャンネルを導入したのに、2つのコンポーネント間の相互作用の意味論は、まだ少しだけ呼び出しスタック・ベースのシステムと同じ臭いがする。あるコンポーネントが特定の要求（「このクレジットカードを確認せよ」）を送信し、応答（「カード良好」または「カード不良」）を期待する、というものだからだ。でもがっかりしないで欲しい、まだチャンネルの意味論の創造的可能性を、すべて検討し尽くした訳ではないからだ。上記の例はいずれも、要求側のコンポーネントが、クレジットカードを検証しなければならないことを知っているのが前提となっている。この重荷を「呼び出し側（caller）」から完全に取り払って、コンポーネント同士を真に分離することはできるだろうか？　チャンネル名（とそれに関連した意味）を `OrderReceived` に変更することで、分離の度合いをもう1ステップ進めることができる。この単純な名前の変更は、責務の相当大きな移動を意味する。チャンネル上のメッセージは、もはや命令を表すものではなくなり、むしろイベントとなる。あることが発生した、という通知だ。受信側がそのイベントにどう対応するかは、送信側からは完全に隠蔽される。また、そのイベントに対して受信者は1つである、という前提ももはや無い。イベントを1つ以上の購読者が処理してもいいのだ。たとえば、新しい注文が来たら、単にクレジットのチェックを実行するだけでなく、在庫の検証もする必要があるかもしれない。これでまた、通信し合うパーティ間の前提が減ることになった。結果として、EDAは多くの場合、SOAよりも疎結合だと考えられる。
 
 [http://www.eaipatterns.com/img/channelnames.png]
 
-== 責務の遷移 (Shifting Responsibilities) ==
+== 責務の移動 (Shifting Responsibilities) ==
 
 Communicating through events as opposed to commands indicates a subtle but important shift of responsibility. It allows components to be decoupled to the extent that the “caller” is no longer aware of what function is executed next nor which component is executing it. Another equally important shift of responsibility between caller and callee is that of keeping state.
 
