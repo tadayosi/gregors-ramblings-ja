@@ -16,7 +16,7 @@
 
 In order to find an appropriate name for a channel we need to first determine what the channel should represent. Even though a channel can be a purely logical construct, it is the key mechanism that couples sender and receiver. Both sender and receiver of messages have to agree on a common channel name in order to exchange messages.
 
-チャンネルに適切な名前を見つけるには、まずそのチャンネルが何を表現するものなのかを決める必要がある。チャンネルは単なる論理的な構成物といえるようなものにも関わらず、送信者と受信者とを結びつける重要なメカニズムである。メッセージの交換を行なうためには、メッセージの送信者と受信者の両方が、共通のチャンネル名について合意しなければならない。
+チャンネルに適切な名前を見つけるには、まずそのチャンネルが何を表現するものなのかを決める必要がある。チャンネルは純粋に論理的な構成物といえるようなものにも関わらず、送信者と受信者とを結びつける重要なメカニズムである。メッセージの交換を行なうためには、メッセージの送信者と受信者の両方が、共通のチャンネル名について合意しなければならない。
 
 Let's look at a few obvious choices:
 
