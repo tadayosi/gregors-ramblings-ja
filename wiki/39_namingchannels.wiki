@@ -32,7 +32,7 @@ _訳注1: 「名前がいったい何だというの？（What's in a name?）�
 
 命令でなくイベントを通して通信を行なうということは、難解だが重要な責務の移動を示している。「呼び出し側」がもはや次にどの関数が実行されるかを知らなくてもよいし、どのコンポーネントがその関数を実行するかも知らなくてよい、という程度にまでコンポーネント同士の分離が可能となる。もう1つ、呼び出し側と呼び出される側との間の、同じく重要な責務の移動は、状態の維持に関するものである。
 
-In a system that is based on queries and commands state is usually kept in one application that is considered the “master” for the data. When another application needs to reference that data it sends a query to the owning application and waits for the response before it continues processing. For example, when an order management system needs to fulfill an order it queries the customer management systems for the customer’s address so it can instruct the shipping application to send the shipment to that address.
+問い合わせ（queries）と命令に基づいたシステムにおいては、状態は通常、そのデータの「マスタ」と見なされるアプリケーションによって保持される。別のアプリケーションがそのデータを参照する必要があるときは、所有者のアプリケーションに対して問い合わせを送り、処理を中断してその応答を待つ。たとえば、ある注文管理システムが注文を捌く必要があるときは、商品発送アプリケーションに商品発送を指示するために、注文管理システムは顧客管理システムに顧客の住所を問い合わせる。
 
 [http://www.eaipatterns.com/img/statetransfer1.png]
 
