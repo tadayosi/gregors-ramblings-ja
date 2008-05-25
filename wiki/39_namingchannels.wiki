@@ -30,7 +30,7 @@ _訳注1: 「名前がいったい何だというの？（What's in a name?）�
 
 == 責務の移動 (Shifting Responsibilities) ==
 
-Communicating through events as opposed to commands indicates a subtle but important shift of responsibility. It allows components to be decoupled to the extent that the “caller” is no longer aware of what function is executed next nor which component is executing it. Another equally important shift of responsibility between caller and callee is that of keeping state.
+命令でなくイベントを通して通信を行なうということは、難解だが重要な責務の移動を示している。「呼び出し側」がもはや次にどの関数が実行されるかを知らなくてもよいし、どのコンポーネントがその関数を実行するかも知らなくてよい、という程度にまでコンポーネント同士の分離が可能となる。もう1つ、呼び出し側と呼び出される側との間の、同じく重要な責務の移動は、状態の維持に関するものである。
 
 In a system that is based on queries and commands state is usually kept in one application that is considered the “master” for the data. When another application needs to reference that data it sends a query to the owning application and waits for the response before it continues processing. For example, when an order management system needs to fulfill an order it queries the customer management systems for the customer’s address so it can instruct the shipping application to send the shipment to that address.
 
