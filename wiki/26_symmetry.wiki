@@ -37,15 +37,13 @@ http://www.eaipatterns.com/img/symmetry_pipelines.gif
 受信する端点では、ほとんど鏡像のようなものだ。まず最初にデシリアライズし、適用可能な証明書をチェックし、ヘッダをパースしてデータを使用可能な状態にする。そのデータが"request"だろうと"response"だろうと、それは二の次なのだ。レスポンスメッセージを送る時も、ヘッダを追加し、シリアライズし、セキュリティを確保したりする必要がある。これらの機能は基本的には[http://patternshare.org/default.aspx/Home.PP.InterceptingFilter Intercepting Filters]の連鎖で実装されるし、これは結局メッセージングシステムの基礎となる
 [http://www.eaipatterns.com/PipesAndFilters.html Pipes-and-Filters]のパターンなのだ。
 
-よって、
+よって、システム間の相互作用をメッセージの交換と捉える事が意味あることなのがわかると思う。システムはほとんどがメッセージ送信者とメッセージ受信者である。ほんの少数の高レベルなindicator(ヘッダフィールドなど)だけが、どのシステムが"client"または"caller"か、どのシステムが"server"または"callee"かを特定する。Thinking about the messages first allows for better code reuse and ultimately a simpler system model.
 
-Therefore, it makes a lot more sense to think about the interaction between the systems as an exchange of messages. The systems are primarily message senders and message receivers. Only a few higher level indicators (such as header fields) indicate which system is the "client" or "caller" and which system is the "server" or "callee". Thinking about the messages first allows for better code reuse and ultimately a simpler system model.
-Examples
+== 例(Examples) ==
+数多くのベンダーが同じ結論に達し、ウェブサービス製品をメッセージングの方向に移行しているのを見るのはとても良いことだ。そのなかでもマイクロソフトは良い例を作っている。元々のASP.NET Web Services フレームワークは"SOAPを介してどのようにして自分のメソッドを呼べばいいの？"という問に始終している一方、最近のWeb Services Enhancements(WSE)は完全にSoapSenderとSoapReceiverモデルに基づいている。そう、WSEはSoapClientとSoapServerというクラスを含んでいるが、それらは実はSoapSender,SoapReceiverを継承しているのだ。"clients"も"servers"も両方とも、入出力メッセージでWS-AddressingとWS-Securityをサポートするために、同じ入力フィルターと出力フィルターを使っている。
 
-It is nice to see that a number of vendors have come to the same conclusion and are steering their Web services products into the direction of messaging. Microsoft makes for a good example. While the original ASP.NET Web Services framework was all about "how can I call my method over SOAP?", the more recent Web Services Enhancements (WSE) are completely based on a SoapSender and SoapReceiver model. Yes, they also include SoapClient and SoapServer classes but these are actually inherited from the SoapSender and SoapReceiver classes. Both "clients" and "servers" use the same input filter and output filter chain to provide support for WS-Addressing and WS-Security for inbound and outbound messages.
-
-If you look a little bit further down the (time)line you'll easily notice that Microsoft's distributed systems strategy has "messaging" written all over it. Indigo is all about messaging.
+もし、もう少し時代を進めて見たいのならば、マイクロソフトの分散システムに対する戦略が"メッセージング"に集中していることが簡単にわかるだろう。Indigoはすべてがメッセージングだ。
 
 == 結論(Conclusion) ==
 
-A call stack mentality is very useful for synchronous, object-oriented applications that live in a single address space. However, when it comes to building distributed systems, the call stack mentality haunts us and makes us not realize the real structure of the system: sending and receiving messages. With message-based asynchrony we achieve symmetry that can save us a lot of duplication and grief.
+呼びだしスタックの概念は、一つのアドレス空間内に存在するような、同期かつオブジェクト指向なアプリケーションにとっては非常に有用だ。しかし、分散システムを構築しようとするとき、呼びだしスタックの概念は私達に付き纏い、メッセージの送受信という本来のシステム構造を作れなくしてしまう。メッセージベースの非同期性によって、私達を多くの複製(duplication)や悲劇(grief)から救う対称性を達成することができるのだ。
