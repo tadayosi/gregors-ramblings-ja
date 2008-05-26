@@ -12,7 +12,7 @@ http://www.eaipatterns.com/img/symmetry_callstack.gif
 
 メソッドの呼びだしは実線で描かれ、戻り値はオプションで、もしあるなら点線で描かれる。仮想計算機やプロセッサレベルの非対称性はpush/popやcall/retペアという形で表われる。メソッドを呼びだしたり、サブルーチンを呼び出したりする事は、メソッドやサブルーチンから戻す事とは本質的に違うのだ。
 
-== 非同期な的対称(Asynchrnous Symmetry) ==
+== 非同期的な対称(Asynchrnous Symmetry) ==
 分散システムの世界では、状況はちょっと違う。分散システムでは結局のところ単方向のデータストリーム(しばしば"ソケット"としてアプリケーションに提供される)を通してしか通信できない。もしスタックのディープなところまで踏み込みたいなら、????(If you want to dive deeper down the stack, you could also make the claim that they can only communicate via packets or voltage sequences on some sort of wire.)。どちらにせよメソッドの呼びだしも、結果の戻りもデータストリーム上で行う必要がある。よって、リモート通信に参加している各コンポーネントは、データストリームとオブジェクトを相互に変換できるような送信モジュールと受信モジュールを備えている必要がある。
 
 面白いところは、この事実を対称的に捉える事がその非対称性を解決する解になるところだ。例えば、次の図では、どちらのコンポーネントがどちらを呼びだしているのだろうか？
