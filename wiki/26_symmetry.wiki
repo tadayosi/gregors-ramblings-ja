@@ -1,6 +1,18 @@
 #summary "同期的な非対称 とか 非同期的な対称" とかって言える？
-#labels 未翻訳
+#labels 翻訳中
  
-= "同期的な非対称 とか 非同期的な対称" とかって言える？ =
+= "同期的非対称 とか 非同期的対称" とかって言える？ =
 
 (原文)http://www.eaipatterns.com/ramblings/26_symmetry.html
+
+== 同期的非対称 ==
+呼びだしスタックは本質的に非対称だ。あるメソッド"caller"がある他のメソッド"callee"を呼びだす。calleeが実行中の間はcallerは処理を中断していて、calleeの実行が完了すると処理はcallerに戻る。呼び出しスタックはcalleeの動作が終了した直後にcallerの処理が確実に続行する事を保証するものだ。このcallerとcalleeの非対称性はUMLの表記法にも表われている。
+
+<<図>>
+
+メソッドの呼びだしは実線で描かれ、戻り値はオプションで、もしあるなら点線で描かれる。仮想計算機やプロセッサレベルの非対称性はpush/popやcall/retペアという形で表われる。メソッドを呼びだしたり、サブルーチンを呼び出したりする事は、メソッドやサブルーチンから戻す事とは本質的に違うのだ。
+
+== 非同期的対称 ==
+分散システムの世界では、状況はちょっと違う。分散システムでは結局のところ単方向のデータストリーム(しばしば"ソケット"としてアプリケーションに提供される)を通してしか通信できない。
+
+In the world of distributed systems, the situation is slightly different. Distributed systems can ultimately only communicate through unidirectional data streams (often represented as "sockets" to the application). If you want to dive deeper down the stack, you could also make the claim that they can only communicate via packets or voltage sequences on some sort of wire. Either way, this means that both invoking a method and returning a result have to be performed in a way that it can be done over a data stream. Therefore, each component participating in remote communications needs to have sender and receiver modules that can turn objects into data streams and vice versa.
