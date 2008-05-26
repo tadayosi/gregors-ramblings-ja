@@ -13,6 +13,13 @@
 メソッドの呼びだしは実線で描かれ、戻り値はオプションで、もしあるなら点線で描かれる。仮想計算機やプロセッサレベルの非対称性はpush/popやcall/retペアという形で表われる。メソッドを呼びだしたり、サブルーチンを呼び出したりする事は、メソッドやサブルーチンから戻す事とは本質的に違うのだ。
 
 == 非同期な的対称 ==
-分散システムの世界では、状況はちょっと違う。分散システムでは結局のところ単方向のデータストリーム(しばしば"ソケット"としてアプリケーションに提供される)を通してしか通信できない。
+分散システムの世界では、状況はちょっと違う。分散システムでは結局のところ単方向のデータストリーム(しばしば"ソケット"としてアプリケーションに提供される)を通してしか通信できない。もしスタックのディープなところまで踏み込みたいなら、????(If you want to dive deeper down the stack, you could also make the claim that they can only communicate via packets or voltage sequences on some sort of wire.)。どちらにせよメソッドの呼びだしも、結果の戻りもデータストリーム上で行う必要がある。よって、リモート通信に参加している各要素(コンポーネント)は、データストリームとオブジェクトを相互に変換できるような送信モジュールと受信モジュールを備えている必要がある。
 
-In the world of distributed systems, the situation is slightly different. Distributed systems can ultimately only communicate through unidirectional data streams (often represented as "sockets" to the application). If you want to dive deeper down the stack, you could also make the claim that they can only communicate via packets or voltage sequences on some sort of wire. Either way, this means that both invoking a method and returning a result have to be performed in a way that it can be done over a data stream. Therefore, each component participating in remote communications needs to have sender and receiver modules that can turn objects into data streams and vice versa.
+面白いところは、この事実を対称的に捉える事がその非対称性を解決する解になるところだ。例えば、次の図では、どちらのコンポーネントがどちらを呼びだしているのだろうか？
+
+<<図>>
+
+この図は左から右へ、もしくは上から下へ描かれているように見えるかもしれないが、どんな文化的なヒントが潜んでいるにせよ(これは大陸を越えると変わる傾向がある)、この図が本質的に対称であることがすぐに分かるだろう。callerもcalleeも両方ともメッセージを送信・受信する必要がある。唯一の違いは、通常callerが先にメッセージを送信し、後でメッセージを受信し、一方、calleeは最初にメッセージを受信し、後からメッセージを送信するという点だ。それ以外はcallerとcalleeにほとんど違いは無い。
+
+
+The fact that one message is the method call (i.e., the "request" message) and the other one is the return (i.e., the "response" message) often manifests itself only in naming conventions or the presence of a <relates-to> element in the reply message that acts as a Correlation Identifier. Some people who equate service-oriented architectures with Web services and Web services with SOAP over HTTP might feel that the request-response model is nicely represented in the HTTP protocol: everything that "goes out" is a request and everything that "comes back" is a response. That works as long as you look it from the perspective of a client , i.e. a consumer of services. For the service provider everything that "comes in" is a request and everything that "goes out" is a response. Sounds pretty symmetric doesn't it? OK, the "client" gets to open and close the connection but once that is done we are back to "data stream out, data steam in". Besides, once you move to a call-back model for long-running services, the "server" now opens a connection to the "client" to deliver the "result" message. Who is now the caller and who is the callee? Sounds confusing? Well, yeah, because this is not the right way to think about these kinds of systems.
