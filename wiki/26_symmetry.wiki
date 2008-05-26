@@ -30,7 +30,11 @@ The fact that one message is the method call (i.e., the "request" message) and t
 
 http://www.eaipatterns.com/img/symmetry_pipelines.gif
 
-ワイヤー(ケーブル)からオブジェクトを取り出すには何が必要だろう？
+ワイヤー(ケーブル)にオブジェクトを取り出すには何が必要だろう？
+典型的にはシステム依存のヘッダ要素、たとえばWS-AddressingのようなSOAPヘッダを挙げるだろう。
+もしかしたら、セキュリティ証明書などの必要な要素を追加して、最終的にデータストリームへシリアライズするかもしれない。ストリームを暗号化するかもしれない。
+
+受信する端点では、ほとんど鏡像のようなものだ。まず最初にデシリアライズし、適用可能な証明書をチェックし、ヘッダをパースしてデータを使用可能な状態にする。そのデータが"request"だろうと"response"だろうと、それは二の次なのだ。レスポンスメッセージを送る時も、ヘッダを追加し、シリアライズし、セキュリティを確保したりする必要がある。これらの機能は基本的には[http://patternshare.org/default.aspx/Home.PP.InterceptingFilter:Intercepting Filters]の連鎖で実装されるし、これは結局メッセージングシステムの基礎となる[http://www.eaipatterns.com/PipesAndFilters.html:Pipes-and-Filters]のパターンなのだ。
 
 What does it take to get an object on the wire? You typically have to add any system-specific header elements, for example SOAP headers such as WS-Addressing. You then might have to attach any necessary security certificates and finally serialize everything into a data stream. You might also want to encrypt parts of the stream. The receiving end looks pretty much like the mirror image: you first have to deserialize, check any applicable certificates and parse out the header elements to be used by the infrastructure. Whether the data you deal with is a "request" or a "response" is totally secondary. Sending a response message still requires you to attach headers, to serialize, and to deal with security. These functions are typically implemented as a chain of Intercepting Filters, a pattern that is ultimately based on the Pipes-and-Filters principle that forms the basis of most messaging systems.
 
