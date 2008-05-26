@@ -36,6 +36,7 @@ Examples
 It is nice to see that a number of vendors have come to the same conclusion and are steering their Web services products into the direction of messaging. Microsoft makes for a good example. While the original ASP.NET Web Services framework was all about "how can I call my method over SOAP?", the more recent Web Services Enhancements (WSE) are completely based on a SoapSender and SoapReceiver model. Yes, they also include SoapClient and SoapServer classes but these are actually inherited from the SoapSender and SoapReceiver classes. Both "clients" and "servers" use the same input filter and output filter chain to provide support for WS-Addressing and WS-Security for inbound and outbound messages.
 
 If you look a little bit further down the (time)line you'll easily notice that Microsoft's distributed systems strategy has "messaging" written all over it. Indigo is all about messaging.
-Conclusion
+
+== 結論(Conclusion) ==
 
 A call stack mentality is very useful for synchronous, object-oriented applications that live in a single address space. However, when it comes to building distributed systems, the call stack mentality haunts us and makes us not realize the real structure of the system: sending and receiving messages. With message-based asynchrony we achieve symmetry that can save us a lot of duplication and grief.
