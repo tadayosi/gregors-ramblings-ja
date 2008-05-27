@@ -13,7 +13,7 @@ http://www.eaipatterns.com/img/symmetry_callstack.gif
 メソッドの呼びだしは実線で描かれ、戻り値は在る場合と無い場合があるが、もしあるなら点線で描かれる。また、仮想計算機やプロセッサレベルでもpush/popペアやcall/retペアという形で非対称性が表われている。このように、メソッドを呼びだしたり、サブルーチンを呼び出したりする事は、メソッドやサブルーチンから値を戻す事とは本質的に違う事なのだ。
 
 == 非同期的な対称(Asynchrnous Symmetry) ==
-分散システムの世界では、状況はちょっと違う。分散システムでは結局のところ単方向のデータストリーム(しばしば"ソケット"としてアプリケーションに提供される)を通してしか通信できない。もしスタックのディープなところまで踏み込みたいなら、~~????(If you want to dive deeper down the stack, you could also make the claim that they can only communicate via packets or voltage sequences on some sort of wire.)~~。どちらにせよメソッドの呼びだしも、結果の戻りもデータストリーム上で行う必要があるという事だ。よって、リモート通信に参加している各コンポーネントは、データストリームとオブジェクトを相互に変換できるような送信モジュールと受信モジュールをそれぞれ備えている必要がある。
+分散システムの世界では、状況はちょっと違う。分散システムでは結局のところ単方向のデータストリーム(しばしば"ソケット"としてアプリケーションに提供される)を通してしか通信できない。もしスタックのディープなところまで踏み込みたいなら、_????(If you want to dive deeper down the stack, you could also make the claim that they can only communicate via packets or voltage sequences on some sort of wire.)_。どちらにせよメソッドの呼びだしも、結果の戻りもデータストリーム上で行う必要があるという事だ。よって、リモート通信に参加している各コンポーネントは、データストリームとオブジェクトを相互に変換できるような送信モジュールと受信モジュールをそれぞれ備えている必要がある。
 
 面白いところは、この事実を対称的に捉える事が、メソッドの呼びだしと戻りという非対称性を解決する解になるという点だ。例えば、次の図では、どちらのコンポーネントがどちらを呼びだしているのだろうか？
 
@@ -36,7 +36,7 @@ http://www.eaipatterns.com/img/symmetry_pipelines.gif
 では受信する端点ではどうなっているだろう。これはほとんど鏡像のようなものだ。まず最初にデシリアライズし、適用可能な証明書をチェックし、ヘッダをパースしてデータを使用可能な状態にする。そのデータが"request"だろうと"response"だろうと、それは二の次なのだ。レスポンスメッセージを送る時も、ヘッダを追加し、シリアライズし、セキュリティを確保したりする必要があるのだ。これらの機能は基本的には[http://patternshare.org/default.aspx/Home.PP.InterceptingFilter Intercepting Filters]の連鎖で実装されるし、これは結局メッセージングシステムの基礎となる
 [http://www.eaipatterns.com/PipesAndFilters.html Pipes-and-Filters]のパターンといえる。
 
-よって、システム間の相互作用をメッセージの交換と捉える事がとても意味あることだというのが分かったと思う。システムはほとんどがメッセージ送信者とメッセージ受信者である。ほんの少数の高レベルなindicator(ヘッダフィールドなど)だけが、どのシステムが"client"または"caller"か、どのシステムが"server"または"callee"かを特定するにすぎない。Thinking about the messages first allows for better code reuse and ultimately a simpler system model.
+よって、システム間の相互作用をメッセージの交換と捉える事がとても意味あることだというのが分かったと思う。システムはほとんどがメッセージ送信者とメッセージ受信者である。ほんの少数の高レベルなindicator(ヘッダフィールドなど)だけが、どのシステムが"client"または"caller"か、どのシステムが"server"または"callee"かを特定するにすぎない。_Thinking about the messages first allows for better code reuse and ultimately a simpler system model._
 
 == 例(Examples) ==
 数多くのベンダーが同じ結論に達し、ウェブサービス製品をメッセージングの方向に移行しているのを見るのはとても良いことだ。そのなかでもマイクロソフトは良い例を作っている。元々のASP.NET Web Services フレームワークは"SOAPを介してどのようにして自分のメソッドを呼べばいいの？"という問に始終している一方、最近のWeb Services Enhancements(WSE)は完全にSoapSenderとSoapReceiverモデルに基づいている。そう、WSEはSoapClientとSoapServerというクラスを含んでいるが、それらは実はSoapSender,SoapReceiverを継承しているのだ。"clients"も"servers"も両方とも、入出力メッセージでWS-AddressingとWS-Securityをサポートするために、同じ入力フィルターと出力フィルターを使っている。
