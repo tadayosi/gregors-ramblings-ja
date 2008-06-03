@@ -39,7 +39,7 @@ http://www.eaipatterns.com/img/symmetry_pipelines.gif
 よって、システム間の相互作用をメッセージの交換と捉える事がとても意味あることだというのが分かったと思う。システムはほとんどがメッセージ送信者とメッセージ受信者である。ほんの少数の高レベルなindicator(ヘッダフィールドなど)だけが、どのシステムが"client"または"caller"か、どのシステムが"server"または"callee"かを特定するにすぎない。全てがメッセージを介して通信するというモデルは、コードの再利用性を促進するだけでなく、よりシンプルなシステム設計を可能にするのだ。
 
 == 例(Examples) ==
-数多くのベンダーが同じ結論に達し、ウェブサービス製品をメッセージングの方向に移行しているのを見るのはとても良いことだ。そのなかでもマイクロソフトは良い例を作っている。元々のASP.NET Web Services フレームワークは"SOAPを介してどのようにして自分のメソッドを呼べばいいの？"という問に始終している一方、最近のWeb Services Enhancements(WSE)は完全にSoapSenderとSoapReceiverモデルに基づいている。そう、WSEはSoapClientとSoapServerというクラスを含んでいるが、それらは実はSoapSender,SoapReceiverを継承しているのだ。"clients"も"servers"も両方とも、入出力メッセージでWS-AddressingとWS-Securityをサポートするために、同じ入力フィルターと出力フィルターを使っている。
+数多くのベンダーが同じ結論に達し、ウェブサービス製品をメッセージングの方向に移行しているのを見るのはとても良いことだ。そのなかでもマイクロソフトは良い例を作っている。元々のASP.NET Web Services フレームワークは"SOAPを介してどのようにして自分のメソッドを呼べばいいの？"という問に始終している一方、最近のWeb Services Enhancements(WSE)は完全に!SoapSenderと!SoapReceiverモデルに基づいている。そう、WSEは!SoapClientと!SoapServerというクラスを含んでいるが、それらは実は!SoapSender,!SoapReceiverを継承しているのだ。"clients"も"servers"も両方とも、入出力メッセージでWS-AddressingとWS-Securityをサポートするために、同じ入力フィルターと出力フィルターを使っている。
 
 もし、もう少し時代を進めて見たいのならば、マイクロソフトの分散システムに対する戦略が"メッセージング"に集中していることが簡単にわかるだろう。Indigoはすべてがメッセージングだ。
 
