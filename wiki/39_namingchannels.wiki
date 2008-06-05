@@ -1,5 +1,5 @@
 #summary 名前がいったい何だというの？
-#labels 翻訳中
+#labels 翻訳完了
 
 = 名前がいったい何だというの？ =
 （原文） http://www.eaipatterns.com/ramblings/39_namingchannels.html
@@ -37,8 +37,6 @@ _訳注1: 「名前がいったい何だというの？（What's in a name?）�
 [http://www.eaipatterns.com/img/statetransfer1.png]
 
 イベント駆動のシステムは、違う動きをする。正反対といえるほど違う。システムは他のシステムに情報を問い合わせるのではなく、代わりに必要なデータのコピーを自分自身で持ち、データが更新されるのを聞き取る。上記の例でいえば、商品発送システムが顧客の住所を複製して持っていて、注文が来たらその住所を商品発送の宛名に使えばよく、顧客管理システムに問い合わせる必要がない。このようにデータを複製して持つのは危険なように見えるが、利点もある。顧客管理システムは単にデータの変更をブロードキャストするだけでよく、誰がデータを持っているかを逐一知っている必要がない。顧客管理システムに住所データの問い合わせが送られることは決してないので、システムが成長して住所データの需要が増大したとしても、顧客管理システムがボトルネックなることは決してない。
-
-The principle behind the shift in responsibility is once again tied to the concept of coupling. In a loosely coupled interaction a source of data should not be required to keep state at the convenience of its communication partners. By shifting the burden of keeping state to the consumer the component is can be completely oblivious to the needs of the data consumers – the key ingredient into loose coupling. The shift away from the query-response pattern of interaction means that many components have to act as event Aggregators: they listen to events from multiple sources, keep the relevant state and combine information from multiple events into new events. For example, the shipping system effectively combines address change events and order events into request for shipment to a specific address.
 
 この責務の移動の背後にある原理は、またしても結合度の概念と結びついている。疎結合の相互作用においては、データの情報源が通信相手の利便性のために、状態を保持しつづけることを要求されるべきではない。状態保持の重荷を消費側（consumer）に移動させることで、コンポーネントはデータ消費側のニーズを完全に忘れ去ることができる。これこそが、疎結合の主要素なのだ。問い合わせ－応答パターンの相互作用からの脱却は、多くのコンポーネントがイベントの集約者（Aggregator）として振る舞わなければならないことを意味する。つまり、コンポーネントは複数の情報源からイベントを聞き取り、自分に関係する状態を保持し、複数イベントからの情報をまとめて新たなイベントを生み出す。たとえば、商品発送システムなら住所変更イベントと注文イベントとを効果的にまとめ上げて、ある特定の住所への商品発送要求にする。
 
