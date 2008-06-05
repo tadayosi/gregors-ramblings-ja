@@ -1,0 +1,5 @@
+#summary よい構成者はきわめて稀だ
+#labels 未翻訳
+
+= よい構成者はきわめて稀だ =
+（原文） http://www.eaipatterns.com/ramblings/19_composing.html
