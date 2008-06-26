@@ -3,7 +3,9 @@
  
 = "同期的な非対称 とか 非同期的な対称" って言ってごらん。 =
 
-(原文)http://www.eaipatterns.com/ramblings/26_symmetry.html
+(原文) http://www.eaipatterns.com/ramblings/26_symmetry.html
+
+2005年3月25日
 
 == 同期的な非対称(Synchronous Asymmetry) ==
 呼びだしスタックは、あるメソッド"caller"がある他のメソッド"callee"を呼びだすという点で本質的に非対称だ。この時、calleeが実行中の間はcallerは処理を中断していて、calleeの実行が完了すると処理はcallerに戻る。calleeの処理が完了した直後にcallerの処理が確実に続行する事を保証するのが呼び出しスタックだ。また、このcallerとcalleeの非対称性はUMLの表記法にも表われている。
