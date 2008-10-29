@@ -14,6 +14,8 @@ There is a lot of debate about coupling these days. In fact, there is enough to 
 
 Alas, there is rarely one right answer in software architecture and coupling is no exception. More coupling gives us efficiency and simplicity but can also introduce rigidity and brittleness. One example of generally more loosely coupled architectures are event-driven systems. These systems consist of a collection of individual processing elements that respond to incoming events. When a processing element receives an event message it perform its designated function and publishes one or more resulting events. These events can then be picked up by other processing nodes. A complete solution is created by composing the individual processing elements into a larger interconnected system (see figure).
 
+悲しいかな、ソフトウェアアーキテクチャにおいて1つの正しい答えがあることは稀で、結合性についても例外ではない。結合を高めれば効率的でシンプルになるが、硬直的で脆弱にもなる。一般に粗結合なアーキテクチャの1例として、イベント駆動システムがある。イベント駆動システムは、入力イベントに対して応答する独立した処理要素が集まって出来ている。ある処理要素がイベントメッセージを受け取ると、所定の機能を実行して、1つ以上の出力イベントを発行する。そのイベントは、さらに別の処理要素が受け取ることもできる。独立した処理要素から、より大きな相互接続したシステムを組み立てることで、完全なソリューションを構築するのだ（下図を参照）。
+
 [http://www.eaipatterns.com/img/composing.gif]
 
 == 構成可能性（Composability） ==
