@@ -38,7 +38,7 @@ This implies that we need to think carefully about validating the composability 
 
 Testing the actual composition of the individual elements is another important part of validating the system. This type of testing can be categorized as integration testing and sits in between unit testing and true functional (i.e. user) testing. This type of testing is important to validate that the chosen composition of the individual elements performs the desired functions. It typically does so by channeling test data into the system and comparing actual with expected results. Luckily, loosely coupled systems generally make it quite easy to inject test data so the mechanics of these test are quite simple. However, achieving proper test coverage can be challenging.
 
-個々の要素を実際に構成したものをテストすることは、システムを検証するもう1つの重要な部分だ。このタイプのテストは統合テストとして分類できるもので、単体テストと真の機能（ユーザ）テストとの間に位置する。このタイプのテストでは、選ばれた個々の要素の構成が望ましい機能を実現することを検証するのが重要だ。
+個々の要素を実際に構成したものをテストすることは、システムを検証するもう1つの重要な部分だ。このタイプのテストは統合テストとして分類できるもので、単体テストと真の機能（ユーザ）テストとの間に位置する。このタイプのテストでは、選ばれた個々の要素の構成が望ましい機能を実現することを検証するのが重要だ。通常は、システムのチャネルにテストデータを流して、期待される結果と実際とを比較することでテストする。運がいいことに、疎結合のシステムでは一般にテストデータを注入するのがとても簡単なので、こうしたテストの技法はとてもシンプルだ。しかし、適切なだけのテストカバレッジを達成するのもやり甲斐のある仕事になるだろう。
 
 When creating these integration tests we need to be aware that with the introduction of composability we also introduced a new programming model into the application. The compositions follow the rules of a Pipes-and-Filters architecture, not an object-oriented architecture. This means that we deal with different constructs and rules. This requires us to rethink our approach to testing slightly.
 
