@@ -55,3 +55,5 @@ A less formal form of analysis is a visualization of the resulting system, for e
 == まとめ（Conclusion） ==
 
 Building loosely coupled and composable systems have definite advantages. However, we have to keep in mind that such architectures introduce an additional layer, the composition layer, into the system. This layer has to be understood and tested separately as it often follows different architectural styles and design principles than the other layers.
+
+疎結合で構成可能なシステムを構築することには、明らかな利点がある。しかし、そのようなアーキテクチャはシステムに構成層（composition layer）という更なる層を導入することを、覚えておかなければならない。この層は別個に理解したり、テストしたりしなければならない。それは、この層がたいてい他の層とは異なるアーキテクチャスタイルや設計原理に従うものだからだ。
