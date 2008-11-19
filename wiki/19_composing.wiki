@@ -57,7 +57,7 @@ It is very useful to have means of inspecting the composition to execute these v
 
 A less formal form of analysis is a visualization of the resulting system, for example as described in an earlier blog entry. In this case, the validation is only half automated because we use human beings to assess whether the composition is a good one or not. However, the system automatically preprocesses the information such that it is easily understood by human beings. This approach often turns out to be a quite reasonable compromise.
 
-[11_dependencies 以前のブログエントリ]
+より形式的でない形の分析方法に、出来上がったシステムを可視化する方法がある。たとえば、[11_dependencies 以前のブログエントリ]で書いたものだ。この場合、妥当性検証は半分だけしか自動化されていない。なぜなら、その構成がグッドかそうでないかを人間が評価するからだ。しかし、システムが自動的に、人間が簡単に理解できるような形の情報に前処理してくれる。このアプローチは、たいていやってみると非常に理にかなった妥協案だと分かる。
 
 == まとめ（Conclusion） ==
 
