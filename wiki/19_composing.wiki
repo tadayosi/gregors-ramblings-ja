@@ -28,9 +28,7 @@
 
 個々の処理要素を実際に構成したものに対するテストは、システムの検証におけるもう1つの重要な部分だ。この種のテストは統合テストに分類されるもので、単体テストと真の機能（ユーザ）テストとの間に位置する。この種のテストで重要なことは、ここで選択された処理要素の構成が、期待通りの機能を果たすかどうかを検証することだ。通常は、システムのチャネルにテストデータを流して、期待される結果と実際とを比較することでテストする。幸いにして、疎結合のシステムでは一般にテストデータをとても簡単に注入できるので、そのテスト技法はとてもシンプルなもので済む。しかし、まともにテストカバレッジを達成するだけでも、チャレンジングな仕事になるだろう。
 
-When creating these integration tests we need to be aware that with the introduction of composability we also introduced a new programming model into the application. The compositions follow the rules of a Pipes-and-Filters architecture, not an object-oriented architecture. This means that we deal with different constructs and rules. This requires us to rethink our approach to testing slightly.
-
-こうした統合テストを作成するときには、構成可能性を導入することでアプリケーションに新しいプログラミングモデルも導入してしまっている、ということを意識する必要がある。構成されたシステムは[http://www.eaipatterns.com/PipesAndFilters.html パイプ＆フィルタ]アーキテクチャのルールに従うのであって、オブジェクト指向アーキテクチャではない。それはつまり、異なる構成物やルールを扱っているということだ。テストに対する我々のアプローチに、少しばかり再検討が求められるのだ。
+こうした統合テストの作成時には、構成可能性の導入によってアプリケーションに新しいプログラミングモデルも導入してしまっている、ということを意識しておく必要がある。構成されたシステムは[http://www.eaipatterns.com/PipesAndFilters.html Pipes-and-Filters（パイプ＆フィルタ）]アーキテクチャのルールに従うのであって、オブジェクト指向アーキテクチャではないのだ。それはつまり、構成要素もルールも異なるものを扱っているということだ。テストのアプローチを、少しばかり再検討する必要がある。
 
 
 == 妥当性検証ルール（Validation Rules） ==
@@ -49,6 +47,4 @@ A less formal form of analysis is a visualization of the resulting system, for e
 
 == まとめ（Conclusion） ==
 
-Building loosely coupled and composable systems have definite advantages. However, we have to keep in mind that such architectures introduce an additional layer, the composition layer, into the system. This layer has to be understood and tested separately as it often follows different architectural styles and design principles than the other layers.
-
-疎結合で構成可能なシステムを構築することには、明らかな利点がある。しかし、そのようなアーキテクチャはシステムに構成層という更なる層を導入することを、覚えておかなければならない。この層は別個に理解したり、テストしたりしなければならない。それは、この層がたいてい他の層とは異なるアーキテクチャスタイルや設計原理に従うものだからだ。
+疎結合で構成可能なシステムを構築することには、明らかな利点がある。しかし、そのようなアーキテクチャは、システムに構成層という更なる層を導入することを忘れてはならない。この層は他とは別個に把握し、テストしなければならないものだ。それは、この層がたいてい他の層とは異なるアーキテクチャスタイルや設計原理に従うものだからだ。
