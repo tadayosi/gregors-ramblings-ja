@@ -1,5 +1,5 @@
 #summary よい作曲家／システム構成者はきわめて稀だ
-#labels 翻訳中
+#labels 翻訳完了
 
 = よい作曲家／システム構成者はきわめて稀だ =
 （原文） http://www.eaipatterns.com/ramblings/19_composing.html
@@ -36,9 +36,7 @@
 
 これらの妥当性検証ルールを自動実行する構成検査の手段をもつことは、とても有益だ。通常、パイプ＆フィルタ型システムは有向グラフとして表すことができるため、妥当性検証を行うのにたいてい簡単なグラフアルゴリズムを利用できる。ポイントは、イベント発行とイベント受信に関する情報を、シンプルな中心リポジトリのようなものに一元管理することだ。この作業はできれば設計時に行いたいが、実行時に行ってもよい（たとえば、[http://www.eaipatterns.com/ControlBus.html Control Bus]を通して）。このような妥当性検証が重要であることは、多くのアーキテクトが、自動化された分析を行えることがアーキテクチャスタイルのキーとなる性質だ、と考えているという事実に強調されている（たとえば、[http://www-2.cs.cmu.edu/afs/cs/project/compose/ftp/pdf/ObjPatternsArch-ieee97.pdf 「アーキテクチャスタイル、デザインパターン、オブジェクト」]を参照）。いったんアーキテクチャスタイルをより形式的に表現できれば、望ましい制約を表現できる言語を現実に思い描くことができる。こうした言語は、大規模なシステムでは実際に役立つだろう。別の方法として、システムの構造をもっと馴染みのある構文（たとえばXML）に変換してもいい。そして、XPATHのような言語を使って望ましい妥当性検証を実行するのだ。
 
-A less formal form of analysis is a visualization of the resulting system, for example as described in an earlier blog entry. In this case, the validation is only half automated because we use human beings to assess whether the composition is a good one or not. However, the system automatically preprocesses the information such that it is easily understood by human beings. This approach often turns out to be a quite reasonable compromise.
-
-より形式的でない形の分析方法に、出来上がったシステムを可視化する方法がある。たとえば、[11_dependencies 以前のブログエントリ]で書いたものだ。この場合、妥当性検証は半分だけしか自動化されていない。なぜなら、その構成がグッドかそうでないかを人間が評価するからだ。しかし、システムが自動的に、人間が簡単に理解できるような形の情報に前処理してくれる。このアプローチは、たいていやってみると非常に理にかなった妥協案だと分かる。
+もっと非形式的な分析方法に、出来上がったシステムを可視化する方法がある。たとえば、[11_dependencies 以前のブログエントリ]で書いたものだ。この場合、妥当性検証は半分しか自動化されない。なぜなら、その構成が良いか悪いかを評価するのは人間だからだ。しかし、人間が簡単に理解できる形の情報を、システムが自動的に準備してくれる。このアプローチは、やってみると非常に理にかなった妥協案だと判明することが多い。
 
 == まとめ（Conclusion） ==
 
