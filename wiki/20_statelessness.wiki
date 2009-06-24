@@ -1,7 +1,7 @@
-#summary エネミー・オブ・アメリカ＝ステート
+#summary エネミー・オブ・アメリカ（ステート）
 #labels 翻訳中
 
-= エネミー・オブ・アメリカ＝ステート =
+= エネミー・オブ・アメリカ（ステート） =
 （原文） http://www.eaipatterns.com/ramblings/20_statelessness.html
 
 2004年12月19日
